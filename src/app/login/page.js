@@ -8,11 +8,22 @@ export default function LoginPage() {
   const [loginInProgress, setLoginInProgress] = useState(false);
   async function handleFormSubmit(ev) {
     ev.preventDefault();
-    setLoginInProgress(true);
+    // setLoginInProgress(true);
 
-    await signIn('credentials', {email, password});
 
-    setLoginInProgress(false);
+    const response = await fetch("/api/login", {
+      method: "POST",
+      body: JSON.stringify({email, password})
+    })
+
+    console.log("response", response)
+    if (response.ok) {
+      console.log("login successful")
+    }
+    // await signIn('credentials', {email, password});
+
+
+    // setLoginInProgress(false);
   }
   return (
     <section className="mt-8">
