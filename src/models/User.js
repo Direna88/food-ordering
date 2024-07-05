@@ -14,12 +14,15 @@ const UserSchema = new Schema({
   },
 }, {timestamps: true});
 
-UserSchema.post('validate', function (user) {
-  const notHashedPassword = user.password;
-  const salt = bcrypt.genSaltSync(10);
-  const hashPassword = bcrypt.hashSync(user.password, salt);
-  //user.password = hashPassword  = bcrypt.hashSync(notHashedPassword, salt);
-})
+//UserSchema.post('validate', function (user) {
+//const notHashedPassword = user.password;
+// console.log(notHashedPassword)
+// const salt = bcrypt.genSaltSync(10);
+// user.password = bcrypt.hashSync(notHashedPassword, salt);
+//   const hashedPassword = bcrypt.hashSync(user.password, salt);
+//   console.log("Hashed password: ", hashPassword)
+//   user.password = hashPassword
+// })
 
 export const User = models?.User || model('User', UserSchema);
 
