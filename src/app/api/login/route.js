@@ -20,6 +20,7 @@ export async function POST(request) {
     return new NextResponse(JSON.stringify({msg: "Login successful"}))
   } else {
     console.log("Noooooooo")
+    console.log("Incorrect Password")
     return new NextResponse(JSON.stringify({msg: "Incorrect password"}), {
       status: 401
     })
