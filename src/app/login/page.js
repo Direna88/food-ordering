@@ -8,8 +8,7 @@ export default function LoginPage() {
   const [loginInProgress, setLoginInProgress] = useState(false);
   async function handleFormSubmit(ev) {
     ev.preventDefault();
-    // setLoginInProgress(true);
-
+    setLoginInProgress(true);
 
     const response = await fetch("/api/login", {
       method: "POST",
@@ -19,11 +18,13 @@ export default function LoginPage() {
     console.log("response", response)
     if (response.ok) {
       console.log("login successful")
+      setLoginInProgress(false);
+      // redirect here
+      window.location.href = "/"
     }
+    setLoginInProgress(false);
+
     // await signIn('credentials', {email, password});
-
-
-    // setLoginInProgress(false);
   }
   return (
     <section className="mt-8">
