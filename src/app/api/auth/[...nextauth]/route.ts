@@ -12,15 +12,18 @@ const handler = NextAuth({
     name: 'credentials',
     id: 'credentials',
     credentials: {
+        name: { label: "Name", type: "text", placeholder: "john"},
         username: { label: "Email", type: "email", placeholder: "test@example.com" },
         password: { label: "Password", type: "password" }
     },
     async authorize(credentials, req) {
+        const name = credentials?.name;
         const email = credentials?.username;
         const password = credentials?.password;
 
         mongoose.connect(process.env.MONGO_URL);
-        const user = await User.findOne({email});
+        //const userName = await User.findOne({name});
+        const user = await User.findOne({email, name});
         const passwordOk = user && bcrypt.compareSync(password, user.password);
 
         if (passwordOk) {

@@ -1,8 +1,8 @@
 "use client";
-import Image from "next/image";
 import {useState} from "react";
 import Link from "next/link";
 export default function RegisterPage() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [creatingUser, setCreatingUser] = useState(false);
@@ -15,7 +15,7 @@ export default function RegisterPage() {
     setUserCreated(false);
       const response = await fetch('/api/register',{
         method: 'POST',
-        body: JSON.stringify({email, password}),
+        body: JSON.stringify({name, email, password}),
         headers: {'Content-Type': 'application/json'},
       });
     if (response.ok) {
@@ -47,10 +47,13 @@ export default function RegisterPage() {
         </div>
       )}
       <form className="block max-w-xs mx-auto" onSubmit={handleFormSubmit}>
-        <input type="email" placeholder="email" value={email}
+        <input type="text" placeholder="name" defaultValue={name}
+               disabled={creatingUser}
+         onChange={event => setName(event.target.value)}/>
+        <input type="email" placeholder="email" defaultValue={email}
                disabled={creatingUser}
          onChange={event => setEmail(event.target.value)}/>
-        <input type="password" placeholder="password" value={password}
+        <input type="password" placeholder="password" defaultValue={password}
                disabled={creatingUser}
         onChange={event => setPassword(event.target.value)}/>
         <button type="submit" disabled={creatingUser}>
