@@ -31,9 +31,10 @@ export async function POST(request) {
 
     // add other user data here
     const profile = {
-      username: body.email
+      username: body.email,
+      name: user.name
     }
-    session.profile = profile
+    session.profile = profile;
 
     await session.save()
     return new NextResponse(JSON.stringify({ msg: "Login successful" }))
@@ -44,10 +45,5 @@ export async function POST(request) {
     })
   }
 
-
-
-
-  console.log(user)
-
-  return new NextResponse("Direna", { status: 201 })
+  return new NextResponse({ status: 201 })
 }
