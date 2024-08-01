@@ -15,6 +15,7 @@ const UserSchema = new Schema({
   },
 }, {timestamps: true});
 
+
 //UserSchema.post('validate', function (user) {
 //const notHashedPassword = user.password;
 // console.log(notHashedPassword)

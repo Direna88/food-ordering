@@ -1,6 +1,6 @@
 'use client';
 import {useState} from "react";
-import {signIn} from "next-auth/react";
+import {getSession, signIn} from "next-auth/react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -10,7 +10,7 @@ export default function LoginPage() {
     ev.preventDefault();
     setLoginInProgress(true);
 
-    const response = await fetch("/api/login", {
+    const response = await fetch("/api/login/", {
       method: "POST",
       body: JSON.stringify({email, password})
     })
@@ -24,10 +24,10 @@ export default function LoginPage() {
     }
     setLoginInProgress(false);
 
-    // await signIn('credentials', {email, password});
+    //await signIn('credentials', {email, password});
   }
   return (
-    <section className="mt-8">
+    <section className="mt-10">
       <h1 className="text-center text-red-500 text-4xl
       mb-4">
         Login

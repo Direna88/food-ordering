@@ -9,8 +9,8 @@ import { getIronSession } from "iron-session";
 // TODO: cut and paste in Login Route
 /** Verify a hashed password */
 function verifyPassword(password, hashedPassword) {
-  const isValid = bcrypt.compareSync(password, hashedPassword)
-  return isValid
+  const isValid = bcrypt.compareSync(password, hashedPassword);
+  return isValid;
 }
 
 export async function POST(request) {

@@ -4,12 +4,7 @@ import Link from "next/link";
 
 
 export default function Header({status, profile}) {
- // const {data: session, status} = useSession();
   //const session = useSession();
-  //console.log(session);
-  //const status = session?.status;
-  //const userData = session.data?.user;
- // const userName = userData?.name || userData?.email;
 
   const handleSignOut = async () => {
     const response = await fetch("/api/logout")
@@ -33,7 +28,9 @@ export default function Header({status, profile}) {
        font-semibold">
         {status === 'authenticated' && (
           <>
-            <Link href={'/profile'}>{profile.name}</Link>
+            <Link href={'/profile'} className="whitespace-nowrap">
+              Hello, {profile.name}
+            </Link>
             <button
               onClick={handleSignOut}
               className="bg-red-500 rounded-full text-white px-8 py-2">

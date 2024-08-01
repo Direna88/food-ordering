@@ -10,5 +10,6 @@ export async function GET() {
 
     // Remove session from browser
     session.destroy()
-    return new NextResponse(JSON.stringify({msg: "Signout successful"}))
+    return new NextResponse(JSON.stringify({msg: "Sign out successful"}))
 }
+
